@@ -21,5 +21,5 @@ Sau khi bước cài đặt hoàn tất, cần tạo dadabase. Chạy lệnh `ya
 
 Xem thêm ở file [**package.json**](https://github.com/tlamxyn/DienTu_API/blob/main/package.json)
 
-Vì khả năng yếu kém của tôi, bạn phải chạy lệnh `yarn migrate` hai lần mới có thể hoàn thành migration. Trong lần chạy đầu tiên, chỉ có database được tạo. Trong lần chạy thứ 2, các bảng và constraint của bảng mới được hoàn thành
+Vì khả năng yếu kém của tôi, bạn phải chạy lệnh `yarn migrate` hai lần mới có thể hoàn thành migration. Trong lần chạy đầu tiên, chỉ có database được tạo. Trong lần chạy thứ 2, các bảng và constraint của bảng mới được hoàn thành. Việc thoát console ta làm thủ công bằng cách dùng `Ctrl + C` ở **Terminal** nếu chúng không thoát
 
