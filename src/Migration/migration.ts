@@ -1,0 +1,23 @@
+import { createDatabase } from "./create_drop_database";
+import { createTableLOAISP } from "./create_dropt_loaisp_table";
+import { createTableTHONGBAO } from "./create_drop_thongbao_table";
+import { createTableTAIKHOAN } from "./create_drop_taikhoan_table";
+import { createTableSANPHAM } from "./create_drop_sanpham_table";
+import { createTableHOADON } from "./create_drop_hoadon_table";
+import { createTableGIOHANG } from "./create_drop_giohang_table";
+import { createTableDANHGIA } from "./create_drop_danhgia_table";
+import { createTableCHITIETHOADON } from "./create_drop_chitiethoadon_table";
+import { addConstraint } from "./add_drop_constraint";
+import { setTimeZone } from "./set_timezone";
+
+createDatabase();
+setTimeZone();
+createTableLOAISP();
+createTableTHONGBAO();
+createTableTAIKHOAN();
+createTableSANPHAM();
+createTableHOADON();
+createTableGIOHANG();
+createTableDANHGIA();
+createTableCHITIETHOADON();
+addConstraint();
