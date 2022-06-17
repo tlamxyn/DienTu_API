@@ -1,26 +1,25 @@
 # DienTu_API
 
-This project will create DienTu_Shop's API
+Project nay sẽ tạo API cho DienTu_Shop Project
 
-# Author
+# Tác giả
 
-- **Name:** Dang Tran Lam
-- **Class:** CDTH19 PMD
-- **School:** Cao Thang Technical College
+- **Tên:** Đặng Trần Lam
+- **Lớp:** CDTH19 PMD
+- **Trường:** Cao Đẳng Kỹ thuật Cao Thắng
 
-# Guide
+# Hướng dẫn
 
-## 1. Setting
+## 1. Cài đặt
 
-- First, you need to download this project. [**Download git**](https://git-scm.com/downloads). After setting up **git** you run _git bash_ or use _Terminal_ of **VSCode**, type `git clone`. Or just  download _zip_ file from [my repository on github](https://github.com/tlamxyn/DienTu_API)
-- Second, you need to download [**_Xampp_**](https://www.apachefriends.org/download.html). Open **_Xampp_**, start _Apache_ and _Mysql_
+- Đầu tiên là tải project này về bằng cách [**Download git**](https://git-scm.com/downloads). Sau khi cài đặt **git** chạy _git bash_ hoặc dùng _Terminal_ của **VSCode**, type `git clone`. Or just  download _zip_ file from [my repository on github](https://github.com/tlamxyn/DienTu_API)
+- Sau đó, bạn phải tải và cài đặt [**_Xampp_**](https://www.apachefriends.org/download.html). Mở **_Xampp_**, nhấn nút start _Apache_ và start _Mysql_
 
 ## 2. Migration
 
-After setting basic things, you need to create database for them. By running `yarn migrate`, database will be created automatically for you.
+Sau khi bước cài đặt hoàn tất, cần tạo dadabase. Chạy lệnh `yarn migrate` trong Terminal, database sẽ tạo bảng cho project (Lúc này cần mở sẫn Apache và MySql của Xampp)
 
-See more in file [**package.json**](https://github.com/tlamxyn/DienTu_API/blob/main/package.json)
+Xem thêm ở file [**package.json**](https://github.com/tlamxyn/DienTu_API/blob/main/package.json)
 
-Because of my skill lacking in nodejs, you need to write twice `yarn migrate` for completing database migration. In the first run, database will be created but it's tables. In the last run, all the tables will be created, include their constraints.
-
+Vì khả năng yếu kém của tôi, bạn phải chạy lệnh `yarn migrate` hai lần mới có thể hoàn thành migration. Trong lần chạy đầu tiên, chỉ có database được tạo. Trong lần chạy thứ 2, các bảng và constraint của bảng mới được hoàn thành
 
