@@ -1,12 +1,10 @@
-import {Router, Request, Response} from 'express';
+import { Router, Request, Response } from "express";
+import admin_router from "./admin/index.router";
+import guest_router from "./guest/index.router";
 
 const router = Router();
 
-router.use('/hi', (req: Request, res: Response) => {
-    res.send({
-        status: 200,
-        message: "I just want to say hello"
-    })
-})
+router.use("/admin", admin_router);
+router.use("/", guest_router);
 
 export default router;

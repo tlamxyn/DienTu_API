@@ -1,4 +1,4 @@
-import database from "../Database/database_promises";
+import database from "../database/database_promises";
 
 export const seedSANPHAM = async () => {
   const pool = await database.pool();

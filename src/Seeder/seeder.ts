@@ -1,7 +1,7 @@
 import { seedLOAISP } from "./loaisp_seeder";
 import { seedTAIKHOAN } from "./taikhoan_seeder";
 import { seedSANPHAM } from "./sanpham_seeder";
-import {seedGIOHANG} from './giohang_seeder';
+import {seedGIOHANG} from "./giohang_seeder";
 import { seedTHONGBAO } from "./thongbao_seeder";
 import { seedHOADON } from "./hoadon_seeder";
 import { seedDANHGIA } from "./danhgia_seeder";

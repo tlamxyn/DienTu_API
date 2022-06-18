@@ -1,4 +1,4 @@
-import database from "../Database/database_promises";
+import database from "../database/database_promises";
 
 export const seedCHITIETHOADON = async () => {
   const pool = await database.pool();

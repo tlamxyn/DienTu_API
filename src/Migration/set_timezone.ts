@@ -6,7 +6,7 @@ import mysql, {
 } from "mysql2";
 import Query from "mysql2/typings/mysql/lib/protocol/sequences/Query";
 import { resourceUsage } from "process";
-import database from "../Database/database";
+import database from "../database/database";
 
 export const setTimeZone = function (timezone: string = "+07:00") {
   const conn = database.conn;

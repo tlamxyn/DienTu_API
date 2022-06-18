@@ -1,5 +1,5 @@
 import mysql, { ResultSetHeader, QueryError } from "mysql2";
-import database from '../Database/database';
+import database from '../database/database';
 
 export const createTableTHONGBAO = function () {
     const conn = database.conn;

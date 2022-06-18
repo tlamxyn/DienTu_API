@@ -1,6 +1,5 @@
 import mysql, { ResultSetHeader, QueryError } from "mysql2";
-import database from "../Database/database";
-import { createDatabase } from "./create_drop_database";
+import database from "../database/database";
 
 export const createTableLOAISP = function () {
   const conn = database.conn;
