@@ -8,7 +8,8 @@
         "build": "npx tsc",
         "dev": "nodemon src/index.ts",
         "migrate": "npx tsc && node dist/Migration/migration.js",
-        "deleteDB": "npx tsc && node dist/Migration/deleteDB.js"
+        "deleteDB": "npx tsc && node dist/Migration/deleteDB.js",
+        "seed": "npx tsc && node dist/Seeder/seeder.js"
     },
     "author": "DangTranLam (0306191328)",
     "license": "ISC",
