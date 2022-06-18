@@ -6,7 +6,7 @@ export const createTableLOAISP = function () {
   const conn = database.conn;
 
   const sql =
-    "CREATE TABLE `loaisp`(`LoaiSPID` int AUTO_INCREMENT PRIMARY KEY NOT NULL, `TenLoai` varchar(255) UNIQUE NOT NULL, `TrangThai` tinyint DEFAULT 1,`created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,`updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,`deleted_at` TIMESTAMP NULL);";
+    "CREATE TABLE `loaisp`(`LoaiSPID` int AUTO_INCREMENT PRIMARY KEY NOT NULL, `TenLoai` varchar(255) UNIQUE NOT NULL CHECK(`TenLoai` <> ''), `TrangThai` tinyint DEFAULT 1,`created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,`updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,`deleted_at` TIMESTAMP NULL);";
 
   conn.execute(sql, (err: QueryError | null, result: ResultSetHeader) => {
     if (err) console.log(err.message);
