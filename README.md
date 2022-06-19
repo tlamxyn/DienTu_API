@@ -2,13 +2,13 @@
 
 Project nay sẽ tạo API cho DienTu_Shop Project
 
-# Tác giả
+# TÁC GIẢ
 
 - **Tên:** Đặng Trần Lam
 - **Lớp:** CDTH19 PMD
 - **Trường:** Cao Đẳng Kỹ thuật Cao Thắng
 
-# Hướng dẫn
+# HƯỚNG DẪN
 
 ## 1. Cài đặt
 
@@ -26,3 +26,7 @@ Vì khả năng yếu kém của tôi, bạn phải chạy lệnh `yarn migrate`
 ## 3. Seed
 
 Sau khi migration đã được hoàn tất, chuyển sang seeding cho database. Gõ strong _Terminal_ lệnh `yarn seed` và đợi đến khi nó chạy xong. Để thực hiện giai đoạn này, **_Apache_** và **_MySQLServer_** của **_Xampp_** phải chạy.
+
+# Chạy API
+
+Sau khi hoàn thành bước HƯỚNG DẪN. Vào _Terminal_ gõ lệnh `yarn dev`. Vậy là ta đã có api server đang hoạt động. Giờ chỉ còn gọi api trên app mobile thôi.
