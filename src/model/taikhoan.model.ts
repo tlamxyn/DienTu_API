@@ -1,3 +1,4 @@
+import TaiKhoanRepo from "../repository/taikhoan.repo";
 export class TaiKhoan {
   TaiKhoanID!: number;
   Ten!: string;
@@ -20,12 +21,12 @@ export class TaiKhoan {
   constructor(
     Ten: string,
     MatKhau: string,
-    NgaySinh?: Date,
-    DiaChi?: string,
+    NgaySinh?: Date | null,
+    DiaChi?: string | null,
     SDT?: string,
     Email?: string,
     GioiTinh?: number,
-    HinhAnh?: string,
+    HinhAnh?: string | null,
     LaAdmin?: number,
     TrangThai?: number
   ) {
@@ -53,12 +54,18 @@ export class TaiKhoan {
     if (LaAdmin) {
       this.LaAdmin = LaAdmin;
     }
-    if(TrangThai) {
-        this.TrangThai = TrangThai;
+    if (TrangThai) {
+      this.TrangThai = TrangThai;
     }
   }
 
-  public createTaiKhoan() {
-
+  async createTaiKhoan() {
+    const result = await TaiKhoanRepo.createTaiKhoan(
+      this.MatKhau,
+      this.Ten,
+      this.Email,
+      this.SDT
+    );
+    return result;
   }
 }

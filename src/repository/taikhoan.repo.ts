@@ -1,4 +1,5 @@
 import { ResultSetHeader } from "mysql2";
+import database from "../database/database";
 import { TaiKhoan } from "../model/taikhoan.model";
 import Repo from "./repo";
 
@@ -40,7 +41,7 @@ export default class TaiKhoanRepo {
    * @param TaiKhoanID
    * @returns
    */
-  static async getTaiKhoan(TaiKhoanID: number): Promise<Array<TaiKhoan> | any> {
+  static async getTaiKhoanByID(TaiKhoanID: number): Promise<Array<TaiKhoan> | any> {
     try {
       const sql = "SELECT * FROM `taikhoan` where `TaiKhoanID` = ?";
       const result = (
@@ -68,40 +69,65 @@ export default class TaiKhoanRepo {
       };
     }
   }
-//   static async deleteTaiKhoan(TaiKhoanID: number): Promise<any> {
-//     try {
-//         const taikhoan = await this.getTaiKhoan(TaiKhoanID);
-//         if(taikhoan.data === 0) {
-//             return {
-//                 success: false,
-//                 dataExist: false
-//             }
-//         }
-//       const sql = "DELETE FROM `taikhoan` WHERE `TaiKhoanID`=?";
-//       const result = (
-//         await (await Repo.getPool()).query(sql, [TaiKhoanID])
-//       )[0] as ResultSetHeader;
+  
+  //   static async deleteTaiKhoan(TaiKhoanID: number): Promise<any> {
+  //     try {
+  //         const taikhoan = await this.getTaiKhoan(TaiKhoanID);
+  //         if(taikhoan.data === 0) {
+  //             return {
+  //                 success: false,
+  //                 dataExist: false
+  //             }
+  //         }
+  //       const sql = "DELETE FROM `taikhoan` WHERE `TaiKhoanID`=?";
+  //       const result = (
+  //         await (await Repo.getPool()).query(sql, [TaiKhoanID])
+  //       )[0] as ResultSetHeader;
 
-//       if (result.affectedRows === 0) {
-//         return {
-//           success: false,
-//           deletedRows: 0,
-//         };
-//       }
+  //       if (result.affectedRows === 0) {
+  //         return {
+  //           success: false,
+  //           deletedRows: 0,
+  //         };
+  //       }
 
-//       return {
-//         success: true,
-//         message: `Deleted an account with id = ${TaiKhoanID}`,
-//       };
-//     } catch (err) {
-//       let error = err as any;
-//       return {
-//         success: false,
-//         code: error.code,
-//         sql: error.sql,
-//         sqlMessage: error.sqlMessage,
-//       };
-//     }
-//   }
-  static async editTaiKhoan() {}
+  //       return {
+  //         success: true,
+  //         message: `Deleted an account with id = ${TaiKhoanID}`,
+  //       };
+  //     } catch (err) {
+  //       let error = err as any;
+  //       return {
+  //         success: false,
+  //         code: error.code,
+  //         sql: error.sql,
+  //         sqlMessage: error.sqlMessage,
+  //       };
+  //     }
+  //   }
+  static async createTaiKhoan(
+    MatKhau: string,
+    Ten: string,
+    Email?: string,
+    SDT?: string
+  ) {
+    try {
+      const sql =
+        "INSERT INTO `taikhoan` (MatKhau, Ten, Email, SDT)" +
+        "VALUES" +
+        "(?, ?, ?, ?);";
+      const result = (
+        await (await Repo.getPool()).query(sql, [MatKhau, Ten, Email, SDT])
+      )[0];
+      return { success: true};
+    } catch (err) {
+      const error = err as any;
+      return {
+        success: false,
+        code: error.code,
+        sql: error.sql,
+        sqlMessage: error.sqlMessage,
+      };
+    }
+  }
 }
