@@ -1,6 +1,13 @@
 import { ResultSetHeader } from "mysql2";
 import database from "../database/database";
 import { TaiKhoan } from "../model/taikhoan.model";
+import {
+  FailCouldNotFind,
+  FailDelete,
+  FailSQL,
+  Success,
+  SuccessDelete,
+} from "../type/response";
 import Repo from "./repo";
 
 /**
@@ -24,15 +31,9 @@ export default class TaiKhoanRepo {
       const result = (
         await (await Repo.getPool()).query(sql)
       )[0] as Array<TaiKhoan>;
-      return result;
+      return Success(result);
     } catch (err) {
-      let error = err as any;
-      return {
-        success: false,
-        code: error.code,
-        sql: error.sql,
-        sqlMessage: error.sqlMessage,
-      };
+      return FailSQL(err);
     }
   }
 
@@ -41,7 +42,9 @@ export default class TaiKhoanRepo {
    * @param TaiKhoanID
    * @returns
    */
-  static async getTaiKhoanByID(TaiKhoanID: number): Promise<Array<TaiKhoan> | any> {
+  static async getTaiKhoanByID(
+    TaiKhoanID: number
+  ): Promise<Array<TaiKhoan> | any> {
     try {
       const sql = "SELECT * FROM `taikhoan` where `TaiKhoanID` = ?";
       const result = (
@@ -49,62 +52,35 @@ export default class TaiKhoanRepo {
       )[0] as Array<TaiKhoan>;
 
       if (result.length === 0) {
-        return {
-          success: false,
-          data: 0,
-        };
+        return FailCouldNotFind();
       }
-
-      return {
-        success: true,
-        data: result[0],
-      };
+      return Success(result[0]);
     } catch (err) {
-      let error = err as any;
-      return {
-        success: false,
-        code: error.code,
-        sql: error.sql,
-        sqlMessage: error.sqlMessage,
-      };
+      return FailSQL(err);
     }
   }
-  
-  //   static async deleteTaiKhoan(TaiKhoanID: number): Promise<any> {
-  //     try {
-  //         const taikhoan = await this.getTaiKhoan(TaiKhoanID);
-  //         if(taikhoan.data === 0) {
-  //             return {
-  //                 success: false,
-  //                 dataExist: false
-  //             }
-  //         }
-  //       const sql = "DELETE FROM `taikhoan` WHERE `TaiKhoanID`=?";
-  //       const result = (
-  //         await (await Repo.getPool()).query(sql, [TaiKhoanID])
-  //       )[0] as ResultSetHeader;
 
-  //       if (result.affectedRows === 0) {
-  //         return {
-  //           success: false,
-  //           deletedRows: 0,
-  //         };
-  //       }
+  static async deleteTaiKhoan(TaiKhoanID: number): Promise<any> {
+    try {
+      const taikhoan = await this.getTaiKhoanByID(TaiKhoanID);
+      if (taikhoan.data === 0) {
+        return FailCouldNotFind();
+      }
+      const sql = "DELETE FROM `taikhoan` WHERE `TaiKhoanID`=?";
+      const result = (
+        await (await Repo.getPool()).query(sql, [TaiKhoanID])
+      )[0] as ResultSetHeader;
 
-  //       return {
-  //         success: true,
-  //         message: `Deleted an account with id = ${TaiKhoanID}`,
-  //       };
-  //     } catch (err) {
-  //       let error = err as any;
-  //       return {
-  //         success: false,
-  //         code: error.code,
-  //         sql: error.sql,
-  //         sqlMessage: error.sqlMessage,
-  //       };
-  //     }
-  //   }
+      if (result.affectedRows === 0) {
+        return FailDelete();
+      }
+
+      return SuccessDelete(result.affectedRows);
+    } catch (err) {
+      return FailSQL(err);
+    }
+  }
+
   static async createTaiKhoan(
     MatKhau: string,
     Ten: string,
@@ -119,15 +95,9 @@ export default class TaiKhoanRepo {
       const result = (
         await (await Repo.getPool()).query(sql, [MatKhau, Ten, Email, SDT])
       )[0];
-      return { success: true};
+      return { success: true };
     } catch (err) {
-      const error = err as any;
-      return {
-        success: false,
-        code: error.code,
-        sql: error.sql,
-        sqlMessage: error.sqlMessage,
-      };
+      return FailSQL(err);
     }
   }
 }
