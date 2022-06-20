@@ -5,13 +5,6 @@ export const Success = (data: any) => {
   };
 };
 
-export const SuccessDelete = (numberOfRecords: number) => {
-  return {
-    success: true,
-    deletedRows: numberOfRecords
-  };
-};
-
 export const SuccessUpdate = (numberOfRecords: number) => {
   return {
     success: true,

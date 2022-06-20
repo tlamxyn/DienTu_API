@@ -65,7 +65,10 @@ export class TaiKhoan {
       this.Ten,
       this.Email,
       this.SDT
-    );
+    ) as any;
+    if(result.data.insertId) {
+      return await TaiKhoanRepo.getTaiKhoanByID(result.data.insertId);
+    }
     return result;
   }
 }

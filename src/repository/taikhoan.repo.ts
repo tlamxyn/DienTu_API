@@ -6,7 +6,6 @@ import {
   FailDelete,
   FailSQL,
   Success,
-  SuccessDelete,
 } from "../type/response";
 import Repo from "./repo";
 
@@ -38,8 +37,8 @@ export default class TaiKhoanRepo {
   }
 
   /**
-   * This fuction use for get and account that match id with `TaiKhoanID`
-   * @param TaiKhoanID
+   *
+   * @param {number} TaiKhoanID
    * @returns
    */
   static async getTaiKhoanByID(
@@ -49,6 +48,50 @@ export default class TaiKhoanRepo {
       const sql = "SELECT * FROM `taikhoan` where `TaiKhoanID` = ?";
       const result = (
         await (await Repo.getPool()).query(sql, [TaiKhoanID])
+      )[0] as Array<TaiKhoan>;
+
+      if (result.length === 0) {
+        return FailCouldNotFind();
+      }
+      return Success(result[0]);
+    } catch (err) {
+      return FailSQL(err);
+    }
+  }
+
+  /**
+   *
+   * @param {string} Email
+   * @returns
+   */
+  static async getTaiKhoanByEmail(
+    Email: string
+  ): Promise<Array<TaiKhoan> | any> {
+    try {
+      const sql = "SELECT * FROM `taikhoan` where `Email` = ?";
+      const result = (
+        await (await Repo.getPool()).query(sql, [Email])
+      )[0] as Array<TaiKhoan>;
+
+      if (result.length === 0) {
+        return FailCouldNotFind();
+      }
+      return Success(result[0]);
+    } catch (err) {
+      return FailSQL(err);
+    }
+  }
+
+  /**
+   *
+   * @param {string} SDT
+   * @returns {any}
+   */
+  static async getTaiKhoanBySDT(SDT: string): Promise<Array<TaiKhoan> | any> {
+    try {
+      const sql = "SELECT * FROM `taikhoan` where `SDT` = ?";
+      const result = (
+        await (await Repo.getPool()).query(sql, [SDT])
       )[0] as Array<TaiKhoan>;
 
       if (result.length === 0) {
@@ -75,7 +118,7 @@ export default class TaiKhoanRepo {
         return FailDelete();
       }
 
-      return SuccessDelete(result.affectedRows);
+      return Success(result);
     } catch (err) {
       return FailSQL(err);
     }
@@ -95,7 +138,7 @@ export default class TaiKhoanRepo {
       const result = (
         await (await Repo.getPool()).query(sql, [MatKhau, Ten, Email, SDT])
       )[0];
-      return { success: true };
+      return Success(result);
     } catch (err) {
       return FailSQL(err);
     }
